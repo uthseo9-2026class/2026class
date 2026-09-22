@@ -39,7 +39,7 @@ body {
   font-family: var(--sans);
   background: var(--bg-cream);
   color: var(--ink-navy);
-  line-height: 1.5;
+  line-height: 1.55;
   letter-spacing: -0.03em;
   word-break: keep-all;
   -webkit-font-smoothing: antialiased;
@@ -211,7 +211,7 @@ img { max-width: 100%; display: block; }
   font-size: clamp(16px, 1.4vw, 18.5px);
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.92);
-  font-weight: 400;
+  font-weight: 500;
   max-width: 50ch;
 }
 .hero-lead strong { color: var(--fest-yellow); font-weight: 800; }
@@ -232,7 +232,13 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   font-size: 15px;
   box-shadow: 4px 4px 0 var(--fest-magenta);
-  text-align: right;
+  text-align: left; /* 2. 앞쪽(왼쪽) 정렬 */
+}
+.poster-date-pill .fest-title-top {
+  color: var(--ink-navy);
+  font-size: 15px;
+  display: block;
+  margin-bottom: 3px;
 }
 .poster-date-pill .fest-highlight {
   color: var(--fest-magenta);
@@ -333,7 +339,7 @@ img { max-width: 100%; display: block; }
 }
 .stat-desc {
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--mute);
   margin-top: 4px;
   font-weight: 500;
@@ -367,7 +373,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.15;
   letter-spacing: -0.035em;
 }
-.sec-title-wrap p { font-size: 15px; color: var(--mute); margin-top: 6px; font-weight: 500; }
+.sec-title-wrap p { font-family: var(--sans); font-size: 15px; color: var(--mute); margin-top: 6px; font-weight: 500; }
 
 /* Filter Tabs */
 .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -487,10 +493,12 @@ img { max-width: 100%; display: block; }
   margin-bottom: 12px;
 }
 .feature-info p {
+  font-family: var(--sans);
   font-size: 15px;
   line-height: 1.68;
   color: var(--mute);
   margin-bottom: 24px;
+  font-weight: 500;
 }
 .spec-grid {
   border-top: 2px dashed var(--line-comic);
@@ -506,6 +514,7 @@ img { max-width: 100%; display: block; }
   color: var(--mute);
 }
 .spec-item .v {
+  font-family: var(--sans);
   font-size: 14.5px;
   font-weight: 800;
   color: var(--ink-navy);
@@ -618,11 +627,13 @@ img { max-width: 100%; display: block; }
   margin-bottom: 8px;
 }
 .card-body p {
+  font-family: var(--sans);
   font-size: 14.5px;
   color: var(--mute);
   line-height: 1.65;
   flex: 1;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 .card-meta {
   border-top: 2px dashed rgba(24, 20, 50, 0.15);
@@ -630,10 +641,11 @@ img { max-width: 100%; display: block; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: var(--sans);
   font-size: 13.5px;
   font-weight: 800;
 }
-.card-meta .meta-point { color: var(--fest-magenta); font-family: var(--num-font); font-weight: 800; font-size: 15px; }
+.card-meta .meta-point { color: var(--fest-magenta); font-family: var(--sans); font-weight: 800; font-size: 14px; }
 .is-hidden { display: none !important; }
 
 /* ===================== TIMELINE ===================== */
@@ -670,25 +682,25 @@ img { max-width: 100%; display: block; }
   min-height: 155px;
 }
 .month-col:first-child { border-left: none; }
+
+/* 숫자 폰트 및 기본 연한 상태 */
 .m-num {
   font-family: var(--num-font);
   font-weight: 800;
   font-size: 28px;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.35); /* 기본 연한 숫자 */
 }
-.month-col.active .m-num { color: #FFF; }
-.month-col.active::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
+
+/* 활성(진한) 숫자 클래스 */
+.m-num.num-solid, .month-col.active .m-num { 
+  color: #FFFFFF !important; 
 }
-.month-col.active:nth-of-type(4n+1)::before { background: var(--fest-yellow); }
-.month-col.active:nth-of-type(4n+2)::before { background: var(--fest-magenta); }
-.month-col.active:nth-of-type(4n+3)::before { background: var(--fest-sky); }
-.month-col.active:nth-of-type(4n)::before { background: var(--fest-orange); }
+
+/* 상단 컬러 바 시스템 */
+.bar-orange::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-orange); }
+.bar-yellow::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-yellow); }
+.bar-magenta::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-magenta); }
+.bar-sky::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-sky); }
 
 .m-tag {
   font-family: var(--num-font);
@@ -699,14 +711,26 @@ img { max-width: 100%; display: block; }
   display: block;
   margin-bottom: 4px;
 }
-.m-title { font-size: 13.5px; font-weight: 800; line-height: 1.4; color: #FFF; }
-.m-empty { font-size: 12.5px; color: rgba(255,255,255,0.45); font-weight: 500; }
+.m-title { 
+  font-family: var(--sans);
+  font-size: 13.5px; 
+  font-weight: 800; 
+  line-height: 1.4; 
+  color: #FFF; 
+}
+.m-empty { 
+  font-family: var(--sans);
+  font-size: 12.5px; 
+  color: rgba(255,255,255,0.55); 
+  font-weight: 500; 
+  line-height: 1.4;
+}
 
-/* ===================== COLOPHON / BLOG CONNECT ===================== */
+/* ===================== COLOPHON / DUAL QR SECTION ===================== */
 .colophon-section { padding: 92px 0 108px; }
 .colophon-card {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: 1.05fr 1.25fr;
   border: 3px solid var(--line-comic);
   border-radius: 26px;
   overflow: hidden;
@@ -714,7 +738,7 @@ img { max-width: 100%; display: block; }
   box-shadow: 8px 8px 0 var(--fest-magenta);
 }
 .colo-content {
-  padding: clamp(34px, 5vw, 60px);
+  padding: clamp(34px, 4.5vw, 56px);
   background: var(--fest-blue);
   color: #FFF;
   display: flex;
@@ -731,20 +755,20 @@ img { max-width: 100%; display: block; }
 .colo-content h2 {
   font-family: var(--sans);
   font-weight: 900;
-  font-size: clamp(30px, 4.2vw, 48px);
-  line-height: 1.15;
+  font-size: clamp(28px, 3.8vw, 42px);
+  line-height: 1.2;
   letter-spacing: -0.03em;
   margin-top: 10px;
 }
 .colo-content p {
   margin-top: 14px;
-  font-size: 15.5px;
-  line-height: 1.7;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.68;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 44ch;
 }
 .channels-row {
-  margin-top: 32px;
+  margin-top: 28px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -755,8 +779,8 @@ img { max-width: 100%; display: block; }
   gap: 8px;
   font-family: var(--sans);
   font-weight: 800;
-  font-size: 15px;
-  padding: 13px 26px;
+  font-size: 14.5px;
+  padding: 12px 22px;
   border-radius: 999px;
   border: 2.5px solid #FFF;
   color: #FFF;
@@ -770,32 +794,72 @@ img { max-width: 100%; display: block; }
 }
 .btn-chan.accent:hover { background: #FFF; color: var(--ink-navy); border-color: #FFF; }
 
-.colo-qr-pane {
-  padding: clamp(34px, 5vw, 56px);
+/* 듀얼 QR 영역 */
+.colo-qr-dual {
+  padding: clamp(30px, 3.8vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: center;
+  background: #FFF;
+}
+.qr-island {
+  border: 2.5px solid var(--line-comic);
+  border-radius: 20px;
+  padding: 20px 14px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 16px;
-  background: #FFF;
+  gap: 12px;
+  background: var(--bg-cream);
+  box-shadow: 4px 4px 0 var(--line-comic);
+  transition: transform 0.2s ease;
 }
-.qr-frame {
-  padding: 14px;
+.qr-island:hover { transform: translateY(-3px); }
+.qr-island.survey-theme { box-shadow: 4px 4px 0 var(--fest-magenta); }
+.qr-island.blog-theme { box-shadow: 4px 4px 0 var(--fest-sky); }
+
+.qr-box-inner {
+  padding: 8px;
   background: #FFF;
-  border: 3px solid var(--line-comic);
-  border-radius: 20px;
-  box-shadow: 6px 6px 0 var(--fest-sky);
-  display: inline-block;
+  border: 2px solid var(--line-comic);
+  border-radius: 14px;
+  line-height: 0;
 }
 .qr-img {
-  width: 170px;
-  height: 170px;
+  width: 125px;
+  height: 125px;
   display: block;
-  border-radius: 10px;
+  border-radius: 6px;
 }
-.qr-caption-title { font-family: var(--sans); font-weight: 800; font-size: 17.5px; color: var(--ink-navy); }
-.qr-caption-sub { font-family: var(--sans); font-size: 13px; color: var(--mute); font-weight: 600; margin-top: 3px; }
+.qr-info-wrap { width: 100%; }
+.qr-badge-pill {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 5px;
+  border: 1.5px solid var(--line-comic);
+}
+.b-survey { background: var(--fest-magenta); color: #FFF; }
+.b-blog { background: var(--fest-yellow); color: var(--ink-navy); }
+
+.qr-caption-title {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 15px;
+  color: var(--ink-navy);
+}
+.qr-caption-sub {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--mute);
+  font-weight: 600;
+  margin-top: 2px;
+}
 
 /* ===================== FOOTER ===================== */
 footer {
@@ -889,11 +953,13 @@ footer {
   line-height: 1.2;
 }
 .modal-lead {
+  font-family: var(--sans);
   font-size: 15px;
   color: var(--mute);
   margin-top: 6px;
   margin-bottom: 26px;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 /* 4장 갤러리 그리드 */
@@ -941,6 +1007,7 @@ footer {
   line-height: 1.45;
   color: var(--mute);
   border-top: 2px solid var(--line-comic);
+  font-family: var(--sans);
 }
 .g-caption strong {
   display: block;
@@ -974,6 +1041,7 @@ footer {
   display: block;
 }
 .note-box .v {
+  font-family: var(--sans);
   font-size: 14px;
   font-weight: 800;
   color: var(--ink-navy);
@@ -999,6 +1067,7 @@ footer {
   .hero { padding: 36px 0 0; }
   .modal-gallery { grid-template-columns: 1fr; }
   .modal-footer-note { grid-template-columns: 1fr; }
+  .colo-qr-dual { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1049,14 +1118,17 @@ footer {
     </h1>
 
     <div class="hero-body-grid">
+      <!-- 1. 바로 밑 하이픈(-) 삭제 완료 -->
       <p class="hero-lead">
-        “<strong>시작하는</strong> 모든 존재는 <strong>뜨겁다.</strong>”<br> — 2026년 부산 서구, 내일의 가능성을 넓히며 청년들과 함께 한 다섯 클래스를 기록합니다.
+        “<strong>시작하는</strong> 모든 존재는 <strong>뜨겁다.</strong>”<br>
+        2026년 부산 서구, <br>내일의 가능성을 넓히며 청년들과 함께 한 다섯 클래스를 기록합니다.
       </p>
 
+      <!-- 2. 페스티벌 문구 위로, 2026. 10. 17.(Sat.) 밑으로, 앞쪽(왼쪽) 정렬 완료 -->
       <div class="hero-right-banner">
         <div class="poster-date-pill">
-          <span class="fest-highlight">2026. 10. 17.(Sat.)</span>
-          <span>천마니와 함께하는 서구 청년 페스티벌</span>
+          <span class="fest-title-top">천마니와 함께하는 서구 청년 페스티벌</span>
+          <span class="fest-highlight">2026. 10. 17. Sat.</span>
         </div>
       </div>
     </div>
@@ -1092,10 +1164,11 @@ footer {
 </section>
 
 <!-- ============ TICKER ============ -->
+<!-- 3. 로컬 디저트 카페 창업 클래스로 변경, 캔바 AI활용 추가 완료 -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>BUSAN SEO-GU YOUTH <span class="ticker-star">★</span> 캔바 AI 취업 클래스 <span class="ticker-star">★</span> 영상 크리에이터 양성 <span class="ticker-star">★</span> 3D 프린팅 입문 <span class="ticker-star">★</span> 로컬 디저트 클래스 <span class="ticker-star">★</span>  소셜 다이닝 <span class="ticker-star">★</span></span>
-    <span>BUSAN SEO-GU YOUTH <span class="ticker-star">★</span> 캔바 AI 취업 클래스 <span class="ticker-star">★</span> 영상 크리에이터 양성 <span class="ticker-star">★</span> 3D 프린팅 입문 <span class="ticker-star">★</span> 로컬 디저트 클래스 <span class="ticker-star">★</span> 소셜 다이닝 <span class="ticker-star">★</span></span>
+    <span>BUSAN SEO-GU YOUTH <span class="ticker-star">★</span> 캔바 AI 활용 클래스 <span class="ticker-star">★</span> 영상 크리에이터 양성 <span class="ticker-star">★</span> 3D 프린팅 입문 <span class="ticker-star">★</span> 로컬 디저트 카페 창업 클래스 <span class="ticker-star">★</span> 소셜 다이닝 <span class="ticker-star">★</span></span>
+    <span>BUSAN SEO-GU YOUTH <span class="ticker-star">★</span> 캔바 AI 활용 클래스 <span class="ticker-star">★</span> 영상 크리에이터 양성 <span class="ticker-star">★</span> 3D 프린팅 입문 <span class="ticker-star">★</span> 로컬 디저트 카페 창업 클래스 <span class="ticker-star">★</span> 소셜 다이닝 <span class="ticker-star">★</span></span>
   </div>
 </div>
 
@@ -1118,12 +1191,12 @@ footer {
       <div class="stat-tag">03 / SESSIONS</div>
       <div class="stat-num">50<span class="sym">+</span></div>
       <div class="stat-label">누적 클래스 회차</div>
-      <div class="stat-desc">이론 및 실습 중심 코스</div>
+      <div class="stat-desc">이론 및 실습 중심</div>
     </div>
     <div class="stat-box">
       <div class="stat-tag">04 / SCORE</div>
-      <div class="stat-num">97<span class="sym">%</span></div>
-      <div class="stat-label">전체 참여 만족도</div>
+      <div class="stat-num">95<span class="sym">%</span></div>
+      <div class="stat-label">학습 만족도</div>
       <div class="stat-desc">참여자 대상 긍정 평가율</div>
     </div>
   </div>
@@ -1136,18 +1209,17 @@ footer {
       <div class="sec-title-wrap">
         <span class="sub">INDEX OF CLASSES</span>
         <h2>올해의 클래스 라인업</h2>
-        <p>카드를 클릭하면 각 클래스의 4단계 진행 사진과 상세 기록을 볼 수 있습니다.</p>
+        <p>카드를 클릭하면 각 클래스의 진행 사진과 상세 기록을 볼 수 있습니다.</p>
       </div>
-
       <div class="filter-tabs" role="tablist">
         <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">전체 (5)</button>
-        <button class="filter-tab" role="tab" aria-selected="false" data-filter="career">커리어·스킬 (2)</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="career">커리어·스킬 (3)</button>
         <button class="filter-tab" role="tab" aria-selected="false" data-filter="maker">창작·메이커 (1)</button>
         <button class="filter-tab" role="tab" aria-selected="false" data-filter="life">커뮤니티·라이프 (1)</button>
       </div>
     </div>
 
-    <!-- 대표 클래스: Plate 01 -->
+    <!-- 대표 클래스: Plate 01 (4. 캔바 AI 활용 클래스로 변경) -->
     <article class="feature-plate" data-category="career" data-program="canva">
       <div class="feature-visual">
         <div class="grid-pattern"></div>
@@ -1159,7 +1231,7 @@ footer {
             <span class="plate-pill">PLATE 01</span>
             <span class="cat-tag featured">FEATURED</span>
           </div>
-          <h3>캔바 AI 취업 클래스</h3>
+          <h3>캔바 AI 활용 클래스</h3>
           <p>생성형 AI 기술과 디자인 툴 캔바를 실전에 결합한 집중 과정. 나만의 명함과 이력서 포트폴리오를 랜딩페이지로 확장하여 청년 개개인의 경쟁력을 시각 언어로 완성했습니다.</p>
         </div>
         <div class="spec-grid">
@@ -1199,10 +1271,10 @@ footer {
         <div class="card-body">
           <span class="card-subfield">MEDIA & CREATIVE</span>
           <h3>영상 크리에이터 양성 과정</h3>
-          <p>트렌디한 숏폼 기획부터 스마트폰 촬영, 컷편집과 오디오 마스터링까지. 청년 스스로 1인 미디어가 되는 제작 전 과정을 실습했습니다.</p>
+          <p>트렌디한 숏폼 기획부터 스마트폰 촬영, 컷편집까지. 청년 스스로 1인 미디어가 되는 제작 전 과정을 실습했습니다.</p>
           <div class="card-meta">
-            <span>10회차 집중 실습</span>
-            <span class="meta-point">만족도 또는 공모 결과 반영</span>
+            <span>10회차 제작 실습</span>
+            <span class="meta-point">공모 출품 결과 또는 만족도</span>
           </div>
         </div>
       </article>
@@ -1217,10 +1289,10 @@ footer {
         <div class="card-body">
           <span class="card-subfield">TECH & MAKING</span>
           <h3>3D 프린팅 입문반</h3>
-          <p>화면 속 3D 모델링 구상을 실물 오브제로 뽑아내는 디지털 제작 실습. CAD 기초부터 슬라이서 설정까지 단계별로 경험했습니다.</p>
+          <p>3D 모델링 구상을 실물 오브제로 뽑아내는 디지털 제작 실습. CAD 기초부터 슬라이서 설정까지 단계별로 경험했습니다.</p>
           <div class="card-meta">
             <span>청년공간 무튼304 진행</span>
-            <span class="meta-point">캔 따개, 클리커 등 제작</span>
+            <span class="meta-point">캔 따개·클리커 등 제작</span>
           </div>
         </div>
       </article>
@@ -1243,20 +1315,20 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 05 -->
       <article class="plate-card c-dessert" data-category="career" data-program="dessert">
         <div class="card-thumb">
           <span class="thumb-plate-label">PLATE 05</span>
-          <span class="thumb-sym">BAKING</span>
-          <span class="thumb-status">조기 마감</span>
+          <!-- 7. BAKING > F&B LAB 변경 완료 -->
+          <span class="thumb-sym">F&B LAB</span>
+          <span class="thumb-status">수강 완료</span>
         </div>
         <div class="card-body">
-          <span class="card-subfield">F&B Startup Lab</span>
+          <span class="card-subfield">F&B STARTUP LAB</span>
           <h3>로컬 디저트 카페 창업 클래스</h3>
-          <p>서구 카페와 연계한 나만의 로컬 디저트 카페 창업을 위한 올인원 실습 교육</p>
+          <p>서구 카페와 연계한 나만의 로컬 디저트 카페 창업을 위한 올인원 실습 교육. 현직 바리스타와 함께 직무 멘토링을 진행했습니다.</p>
           <div class="card-meta">
             <span>재료비 전액 지원</span>
-            <span class="meta-point">모지포그라운드 메종드나인 엠바크 등</span>
+            <span class="meta-point">모지포그라운드·메종드나인 등 연계</span>
           </div>
         </div>
       </article>
@@ -1271,50 +1343,79 @@ footer {
       <div class="sec-title-wrap">
         <span class="sub">ANNUAL CHRONOLOGY</span>
         <h2>2026년 서구 청년 맞춤 클래스 여정</h2>
-        <p>청년들이 함께 채워온 시간의 기록입니다.</p>
+        <p>청년들과 함께 채워온 시간의 기록입니다.</p>
       </div>
     </div>
 
     <div class="timeline-track">
+      <!-- 01월 -->
       <div class="month-col"><span class="m-num">01</span><div class="m-empty">수요 조사 및 협의</div></div>
+      <!-- 02월 -->
       <div class="month-col"><span class="m-num">02</span><div class="m-empty">프로그램 기획</div></div>
-      <div class="month-col active"><span class="m-num">03</span><div class="m-empty">커리큘럼 구체화</div></div>
+      <!-- 03월: 테두리 제외, 숫자 연하게 -->
+      <div class="month-col"><span class="m-num">03</span><div class="m-empty">커리큘럼 구체화</div></div>
+      <!-- 04월 -->
       <div class="month-col"><span class="m-num">04</span><div class="m-empty">교육 인프라 확보</div></div>
-      <div class="month-col active"><span class="m-num">05</span><div><span class="m-tag">CLASS PROMO</span><div class="m-title">수강생 모집 홍보</div></div></div>
-      <div class="month-col"><span class="m-num">06</span><div><span class="m-tag">CAREER MAKER</span><div class="m-title">캔바 AI 활용 클래스 / 3D 프린팅 입문 1기 / 디저트 카페 창업 클래스</div></div></div>
-      <div class="month-col"><span class="m-num">07</span><div><span class="m-tag">MEDIA</span> 영상 크리에이터 양성</div></div>
-      <div class="month-col active"><span class="m-num">08</span><div><span class="m-tag">COMMUNITY</span><div class="m-title">소셜 다이닝</div></div></div>
-      <div class="month-col active"><span class="m-num">09</span><div class="m-empty"> 프로그램 정비 및 수강생 모집 홍보</div></div>
-      <div class="month-col active"><span class="m-num">10</span><div><span class="m-tag">MAKER</span><div class="m-title">3D 입문 2기 / 핼러윈_원데이 쿠킹 클래스1</div></div></div>
-      <div class="month-col"><span class="m-num">11</span><div><span class="m-tag">ONE day</span><div class="m-title">원데이 쿠킹 클래스2</div></div></div>
+      <!-- 05월: 모집 홍보 -->
+      <div class="month-col bar-yellow"><span class="m-num num-solid">05</span><div><span class="m-tag">CLASS PROMO</span><div class="m-title">수강생 모집 홍보</div></div></div>
+      <!-- 06월: 상단 테두리 추가, 숫자 흰색 진하게 -->
+      <div class="month-col bar-orange"><span class="m-num num-solid">06</span><div><span class="m-tag">CAREER & MAKER</span><div class="m-title">캔바 AI 클래스<br>3D 프린팅 1기<br>디저트 창업</div></div></div>
+      <!-- 07월: 상단 테두리 추가, 숫자 흰색 진하게, 타이틀 진하게 -->
+      <div class="month-col bar-yellow"><span class="m-num num-solid">07</span><div><span class="m-tag">MEDIA</span><div class="m-title">영상 크리에이터 양성</div></div></div>
+      <!-- 08월: 소셜다이닝 -->
+      <div class="month-col bar-magenta"><span class="m-num num-solid">08</span><div><span class="m-tag">COMMUNITY</span><div class="m-title">소셜 다이닝</div></div></div>
+      <!-- 09월: 상단 노란 막대 제외, 숫자 연하게 -->
+      <div class="month-col"><span class="m-num">09</span><div class="m-empty">프로그램 정비 및 수강생 모집 홍보</div></div>
+      <!-- 10월: 3D 2기 / 핼러윈 쿠킹 -->
+      <div class="month-col bar-sky"><span class="m-num num-solid">10</span><div><span class="m-tag">MAKER & COOK</span><div class="m-title">3D 입문 2기<br>핼러윈_원데이 쿠킹</div></div></div>
+      <!-- 11월: 원데이 쿠킹2 -->
+      <div class="month-col bar-orange"><span class="m-num num-solid">11</span><div><span class="m-tag">ONE DAY</span><div class="m-title">인절미_원데이 쿠킹 2</div></div></div>
+      <!-- 12월 -->
       <div class="month-col"><span class="m-num">12</span><div class="m-empty">맞춤 클래스 종료</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ COLOPHON / BLOG CONNECT ============ -->
+<!-- ============ COLOPHON / DUAL QR CONNECT ============ -->
 <section class="colophon-section">
   <div class="container">
     <div class="colophon-card">
       <div class="colo-content">
         <div>
-          <span class="colo-lead-tag">OFFICIAL BLOG & SNS</span>
-          <h2>서구 청년의 이야기,<br>블로그에서 이어집니다</h2>
-          <p>서구 청년 정책 소식은 공식 네이버 블로그에서 가장 빠르게 확인하실 수 있습니다.</p>
+          <span class="colo-lead-tag">OFFICIAL BLOG & FEEDBACK</span>
+          <h2>서구 청년의 이야기,<br>온라인에서 만나요</h2>
+          <p>청년 맞춤 클래스의 생생한 현장 후기와 정책 소식은 블로그에서 확인하고, 10월 17일 축제 현장의 설문조사에도 참여해 주세요!</p>
         </div>
         <div class="channels-row">
-          <a href="#" id="link-blog" target="_blank" rel="noopener" class="btn-chan accent">📝 네이버 공식 블로그 방문하기</a>
+          <a href="#" id="link-blog" target="_blank" rel="noopener" class="btn-chan accent">📝 네이버 블로그 바로가기</a>
           <a href="#" id="link-ig" target="_blank" rel="noopener" class="btn-chan">📷 인스타그램 둘러보기</a>
         </div>
       </div>
-      <div class="colo-qr-pane">
-        <div class="qr-frame">
-          <!-- 공식 블로그로 즉시 연결되는 고화질 QR 코드 API (오류/누락 없는 안전한 렌더링) -->
-          <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://blog.naver.com/muten304" alt="서구 청년공간 공식 블로그 QR코드">
+
+      <!-- 듀얼 QR 영역 -->
+      <div class="colo-qr-dual">
+        <!-- QR 1: 공식 블로그-->
+        <div class="qr-island blog-theme">
+          <div class="qr-box-inner">
+            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://blog.naver.com/muten304" alt="공식 네이버 블로그 QR코드">
+          </div>
+          <div class="qr-info-wrap">
+            <span class="qr-badge-pill b-blog">공식 채널</span>
+            <div class="qr-caption-title">네이버 블로그</div>
+            <div class="qr-caption-sub">청년 정책 소식</div>
+          </div>
         </div>
-        <div>
-          <div class="qr-caption-title">공식 블로그 바로가기</div>
-          <div class="qr-caption-sub">스마트폰 카메라로 스캔하세요</div>
+
+        <!-- QR 2: 청년 페스티벌 만족도 조사 (11. 10. 17. FESTIVAL / 12. 소중한 의견 남기기) -->
+        <div class="qr-island survey-theme">
+          <div class="qr-box-inner">
+            <img class="qr-img" id="qr-survey-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://blog.naver.com/muten304" alt="페스티벌 만족도 조사 QR코드">
+          </div>
+          <div class="qr-info-wrap">
+            <span class="qr-badge-pill b-survey">10. 17. FESTIVAL</span>
+            <div class="qr-caption-title">만족도 설문조사</div>
+            <div class="qr-caption-sub">소중한 의견 남기기</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1340,7 +1441,7 @@ footer {
         <span class="m-badge-tag" id="m-tag">CAREER & AI</span>
       </div>
       <h3 class="modal-title" id="m-title">캔바 AI 활용 클래스</h3>
-      <p class="modal-lead" id="m-lead">프롬프트 생성부터 개인 포트폴리오 런칭까지, 청년들의 실전 기록</p>
+      <p class="modal-lead" id="m-lead">이력서부터 포트폴리오 랜딩페이지까지, 청년들의 실전 기록</p>
     </div>
 
     <!-- 4장 갤러리 그리드 -->
@@ -1355,7 +1456,7 @@ footer {
         <span class="v" id="m-result">-</span>
       </div>
       <div class="note-box">
-        <span class="k">VOICE OF CREW</span>
+        <span class="k">VOICE OF LEARNERS</span>
         <span class="v" id="m-review">-</span>
       </div>
     </div>
@@ -1364,94 +1465,101 @@ footer {
 
 <script>
 /* =====================================================================
-   ★ 링크 설정 (블로그 & 인스타그램) ★
+   ★ 링크 설정 (블로그, 인스타그램, 페스티벌 만족도 설문 주소) ★
    ===================================================================== */
 var CONFIG = {
   blog:      "https://blog.naver.com/muten304",
-  instagram: "https://www.instagram.com/muten_304"
+  instagram: "https://www.instagram.com/muten_304",
+  survey:    "https://blog.naver.com/muten304" // 실제 설문조사 URL이 나오면 여기에 주소를 넣어주시면 QR이 즉시 변경됩니다.
 };
 
 /* =====================================================================
-   ★ 5개 프로그램 4단계 아카이브 데이터 ★
+   ★ 5개 프로그램 아카이브 데이터 ★
    ===================================================================== */
 var ARCHIVE_DATA = {
   canva: {
     plate: "PLATE 01",
     tag: "CAREER & SKILL",
-    title: "캔바 AI 취업 클래스",
-    lead: "프롬프트 설계부터 개인 웹 포트폴리오 런칭까지 이어진 청년들의 실전 기록",
-    result: "수료율 100% (20명) · 개인별 포트폴리오 4종 완성",
-    review: "“막막했던 이력서를 AI와 캔바로 반나절 만에 시각화해 실제 서류 전형에 활용했습니다.”",
+    title: "캔바 AI 활용 클래스",
+    lead: "이력서부터 랜딩페이지 제작까지 이어진 청년들의 실전 기록",
+    result: "개인별 포트폴리오 4종 완성",
+    review: "“막막했던 이력서를 AI와 캔바로 쉽게 만들 수 있었습니다.”<br> “AI를 사용해 작업할 수 있는 프로그램이 많아졌으면 좋겠습니다.”",
     steps: [
       { step: "01. AI 프롬프트 설계", desc: "생성형 AI를 활용한 강점 키워드 도출 및 텍스트 구조화", img: "" },
-      { step: "02. 캔바 레이아웃 실습", desc: "인포그래픽 템플릿 기반 직무 맞춤형 레이아웃 시각화", img: "" },
-      { step: "03. 웹 포트폴리오 빌드", desc: "도메인 연결 및 반응형 웹 원페이지 포트폴리오 구축", img: "" },
-      { step: "04. 최종 쇼케이스 & 피드백", desc: "동료 상호 피드백 및 전문가 1:1 직무 컨설팅 진행", img: "" }
+      { step: "02. 캔바 레이아웃 실습", desc: "템플릿 기반 직무 맞춤형 레이아웃 시각화", img: "" },
+      { step: "03. 숏폼제작", desc: "캔바를 이용한 간단한 숏폼 제작", img: "" },
+      { step: "04. 랜딩페이지 빌드", desc: "반응형 랜딩페이지 포트폴리오 구축", img: "" }
     ]
   },
   video: {
     plate: "PLATE 02",
     tag: "MEDIA & CONTENT",
     title: "영상 크리에이터 양성 과정",
-    lead: "트렌디한 숏폼 기획부터 스마트폰 짐벌 촬영, 컷편집과 오디오 마스터링까지",
-    result: "청년 제작 숏폼/릴스 35편 제작 · 평균 만족도 96.5%",
+    lead: "트렌디한 숏폼 기획부터 스마트폰 촬영, 컷편집까지",
+    result: "청년 제작 숏폼/릴스 완성 및 공모 출품",
     review: "“스마트폰 하나로 기획부터 컷편집, 음향까지 스스로 끝낼 수 있는 자신감을 얻었어요.”",
     steps: [
       { step: "01. 트렌드 분석 & 콘티 기획", desc: "바이럴 숏폼 구조 분석 및 씬별 스토리보드 작성", img: "" },
-      { step: "02. 스마트폰 & 짐벌 촬영", desc: "서구 원도심 골목 현장 출사 및 앵글 실습", img: "" },
+      { step: "02. 스마트폰 현장 촬영", desc: "서구 원도심 골목 현장 출사 및 앵글 실습", img: "" },
       { step: "03. 컷편집 & 템포 조율", desc: "모바일 편집 앱을 활용한 타이밍 컷편집과 BGM 믹싱", img: "" },
-      { step: "04. 채널 런칭 & 상영회", desc: "완성작 시사회 개최 및 개인 SNS 채널 업로드", img: "" }
+      { step: "04. 멘토링 & 채널 런칭", desc: "완벽을 위한 멘토링 및 개인 SNS 채널 업로드", img: "" }
     ]
   },
   printing: {
     plate: "PLATE 03",
-    tag: "TECH & FABRICATION",
+    tag: "TECH & MAKING",
     title: "3D 프린팅 입문반",
-    lead: "화면 속 3D 모델링 구상을 실물 오브제로 뽑아내는 디지털 제조 집중 실습",
-    result: "실물 창작 오브제 40여 점 출력 · 슬라이서 세팅 숙련도 100%",
-    review: "“상상했던 디자인이 노즐을 통해 실물로 층층이 쌓여 나올 때의 전율이 잊히지 않아요.”",
+    lead: "3D 모델링 구상을 실물 오브제로 뽑아내는 디지털 제작 실습",
+    result: "캔 따개·클리커 등 생활 밀착형 창작물 출력",
+    review: "“상상했던 디자인이 실물로 나왔을 때의 기쁨이 잊히지 않아요.”",
     steps: [
       { step: "01. 3D CAD 모델링 기초", desc: "기본 파츠 스케치 및 입체 형상 3차원 설계", img: "" },
       { step: "02. 슬라이서 파라미터 세팅", desc: "적층 높이, 서포트, 인필 밀도 등 출력 조건 최적화", img: "" },
-      { step: "03. FDM 고속 출력 실습", desc: "필라멘트 베드 안착 및 실시간 출력 트러블슈팅", img: "" },
-      { step: "04. 후가공 & 쇼케이스", desc: "서포트 제거, 샌딩 마감 및 최종 창작물 전시", img: "" }
+      { step: "03. 후가공 & 모델링 심화", desc: "서포트 제거, 샌딩 마감 및 정밀 모델링 설계", img: "" },
+      { step: "04. 캐릭터 제작", desc: "캐릭터 설계 및 최종 결과물 제작", img: "" }
     ]
   },
   dining: {
     plate: "PLATE 04",
     tag: "COMMUNITY & SOCIAL",
     title: "마음 한 끼, 소셜 다이닝",
-    lead: "청년 1인 가구의 정서적 고립감을 덜고 건강한 제철 요리로 이어지는 온기의 식탁",
-    result: "총 6회차 정기 테이블 성료 · 커뮤니티 만족도 99.0%",
-    review: "“혼자 대충 때우던 저녁 대신, 또래 청년들과 정성껏 요리해 먹으며 큰 위로를 받았습니다.”",
+    lead: "청년의 정서적 고립감을 덜고 건강한 요리로 함께한 청년 식탁",
+    result: "밀프렙부터 원 팬 요리까지 이젠 혼자서도 잘 먹겠습니다.",
+    review: "“함께 요리하며 큰 위로를 받았습니다.”",
     steps: [
-      { step: "01. 제철 식재료 큐레이션", desc: "지역 로컬 푸드를 활용한 건강 식단 기획", img: "" },
-      { step: "02. 쿠킹 앤 플레이팅", desc: "팀별 레시피 협업 및 감각적인 테이블 세팅", img: "" },
-      { step: "03. 대화가 있는 디너", desc: "키워드 토크 카드를 활용한 일상과 고민 나눔", img: "" },
-      { step: "04. 홈레시피 셰어링", desc: "자취생 간편 건강 레시피 카드북 제작 및 교환", img: "" }
+      { step: "01. 밀프렙 2종 제작", desc: "배 고플 땐 살짝 꺼내먹어요.", img: "" },
+      { step: "02. 원 팬 요리 1", desc: "춘천을 가지 않아도 닭갈비를 먹어요.", img: "" },
+      { step: "03. 원 팬 요리 2", desc: "집에서도 이딸리아노", img: "" },
+      { step: "04. 담금 장인", desc: "모히또 가서 우리집 한 잔", img: "" }
     ]
   },
   dessert: {
     plate: "PLATE 05",
-    tag: "WELLNESS & TASTE",
-    title: "쿠킹 디저트 클래스",
-    lead: "손끝의 집중으로 일상의 번아웃을 덜어내는 감각적인 원데이 파티시에 워크숍",
-    result: "신청 접수 3분 만에 조기 마감 · 1인당 3종 제과 완성",
-    review: "“버터 향 가득한 공간에서 오롯이 베이킹에 몰입하면서 머릿속 복잡함이 싹 비워졌어요.”",
+    tag: "F&B STARTUP LAB",
+    title: "로컬 디저트 카페 창업 클래스",
+    lead: "서구 카페와 연계한 나만의 로컬 디저트 카페 창업을 위한 올인원 실습 교육",
+    result: "신청 접수 인기 마감 · 모지포그라운드, 메종드나인, 엠바크 연계 실습",
+    review: "“창업에 필요한 바리스타 기초부터 현장 멘토링까지 생생하게 배울 수 있어 든든했습니다.”",
     steps: [
-      { step: "01. 베이킹 재료 배합", desc: "밀가루, 발효 버터 계량 및 유화 원리 이해", img: "" },
-      { step: "02. 반죽 템퍼링 & 패닝", desc: "온도 조절 반죽 성형 및 전용 팬 패닝 작업", img: "" },
-      { step: "03. 오븐 베이킹 & 아이싱", desc: "구움색 관찰 및 글라세/가나슈 데코레이션", img: "" },
-      { step: "04. 에디토리얼 패키징", desc: "친환경 패키지 포장 및 선물용 메시지 태그 작성", img: "" }
+      { step: "01. 창업 멘토링", desc: "로컬 식재료 기반 제과 기초 원리 이해", img: "" },
+      { step: "02. 카페 메뉴 실습", desc: "핫한 카페의 대표 메뉴를 배우다.", img: "" },
+      { step: "03. 제과 메뉴 실습", desc: "요즘 대세 제과 기술 습득, 맛을 곁들인", img: "" },
+      { step: "04. 나만의 카페 기획", desc: "상권 분석, 내 카페 디자인 및 메뉴 개발", img: "" }
     ]
   }
 };
 
 document.addEventListener('DOMContentLoaded', function(){
-  // 링크 연결
-  var ig = document.getElementById('link-ig'), bl = document.getElementById('link-blog');
+  // 링크 및 QR 바인딩
+  var ig = document.getElementById('link-ig'), 
+      bl = document.getElementById('link-blog'), 
+      qrSurvey = document.getElementById('qr-survey-img');
+
   if(ig) ig.href = CONFIG.instagram;
   if(bl) bl.href = CONFIG.blog;
+  if(qrSurvey && CONFIG.survey) {
+    qrSurvey.src = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + encodeURIComponent(CONFIG.survey);
+  }
 
   // 탭 필터링
   var tabs = document.querySelectorAll('.filter-tab');
