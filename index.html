@@ -417,9 +417,6 @@ img { max-width: 100%; display: block; }
 .feature-visual {
   position: relative;
   background: radial-gradient(circle at 30% 30%, #2f4be8, var(--fest-blue) 70%, #0d1a6e);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 360px;
   overflow: hidden;
   border-right: 3px solid var(--line-comic);
@@ -451,20 +448,22 @@ img { max-width: 100%; display: block; }
   transform: scale(1.05);
 }
 
-/* LP 바이닐 인터랙션 (평소 안정 배치 -> 호버 시 상단으로 떠오르며 역동적 회전) */
+/* LP 바이닐 디스크 슬리브 인터랙션 (기본: 우측 하단 걸침 -> 호버: 상단 중앙으로 솟아오름) */
 .vinyl-disc {
-  width: clamp(180px, 22vw, 260px);
+  position: absolute;
+  right: -30px;
+  bottom: -40px;
+  width: clamp(190px, 24vw, 280px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: repeating-radial-gradient(circle at 50% 50%, #0B0E28 0 3px, #1D2357 3px 6px);
-  position: relative;
   z-index: 3;
   border: 3px solid var(--line-comic);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
   animation: spin 16s linear infinite;
-  transform: translate(0, 0) scale(0.96);
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), right 0.5s ease, bottom 0.5s ease, box-shadow 0.5s ease;
 }
+
 .vinyl-disc::after {
   content: "";
   position: absolute;
@@ -472,6 +471,7 @@ img { max-width: 100%; display: block; }
   border-radius: 50%;
   background: conic-gradient(var(--fest-magenta), var(--fest-yellow), var(--fest-sky), var(--fest-green), var(--fest-magenta));
 }
+
 .vinyl-disc::before {
   content: "";
   position: absolute;
@@ -482,11 +482,12 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--line-comic);
 }
 
-/* 마우스 호버 시 바이닐 디스크 슬리브 슬라이드 모션 */
 .feature-plate:hover .vinyl-disc {
-  transform: translate(14px, -24px) scale(1.08) rotate(12deg);
-  box-shadow: -10px 24px 40px rgba(0,0,0,0.65);
-  animation-duration: 6s;
+  right: 18%;
+  bottom: 22%;
+  transform: scale(1.08) rotate(20deg);
+  box-shadow: -14px 28px 45px rgba(0, 0, 0, 0.65);
+  animation-duration: 5s;
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -1331,7 +1332,7 @@ footer {
       </div>
     </div>
 
-    <!-- 대표 클래스: Plate 01 (0010.png 반영) -->
+    <!-- 대표 클래스: Plate 01 (0010.png) -->
     <article class="feature-plate" data-category="career" data-program="canva">
       <div class="feature-visual">
         <img src="0010.png" alt="캔바 AI 활용 클래스" class="plate-bg-photo" onerror="this.style.display='none'">
@@ -1374,7 +1375,7 @@ footer {
 
     <!-- 세부 클래스 그리드: Plates 02~05 -->
     <div class="plates-grid">
-      <!-- Plate 02 (0020.JPG 반영) -->
+      <!-- Plate 02 (0020.JPG) -->
       <article class="plate-card c-video" data-category="career" data-program="video">
         <div class="card-thumb">
           <img src="0020.JPG" alt="영상 크리에이터 양성 과정" class="plate-bg-photo" onerror="this.style.display='none'">
@@ -1393,7 +1394,7 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 03 (0030.png 반영) -->
+      <!-- Plate 03 (0030.png) -->
       <article class="plate-card c-maker" data-category="maker" data-program="printing">
         <div class="card-thumb">
           <img src="0030.png" alt="3D 프린팅 입문반" class="plate-bg-photo" onerror="this.style.display='none'">
@@ -1412,7 +1413,7 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 04 (0040.jpg 반영) -->
+      <!-- Plate 04 (0040.jpg) -->
       <article class="plate-card c-dining" data-category="life" data-program="dining">
         <div class="card-thumb">
           <img src="0040.jpg" alt="소셜 다이닝 요리 실습" class="plate-bg-photo" onerror="this.style.display='none'">
@@ -1431,7 +1432,7 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 05 (0050.jpg 반영) -->
+      <!-- Plate 05 (0050.jpg) -->
       <article class="plate-card c-dessert" data-category="career" data-program="dessert">
         <div class="card-thumb">
           <img src="0050.jpg" alt="로컬 디저트 카페 창업" class="plate-bg-photo" onerror="this.style.display='none'">
