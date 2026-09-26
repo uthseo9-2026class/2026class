@@ -246,7 +246,6 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
-/* 정돈된 모던 웨이브 디바이더 */
 .hero-wave-divider {
   position: relative;
   width: 100%;
@@ -430,13 +429,35 @@ img { max-width: 100%; display: block; }
   inset: 0;
   background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
   background-size: 28px 28px;
+  z-index: 2;
 }
+
+/* 반투명 포토 오버레이 */
+.plate-bg-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;
+  mix-blend-mode: luminosity;
+  filter: contrast(1.15) saturate(1.2);
+  transition: opacity 0.3s ease, transform 0.35s ease;
+  z-index: 1;
+}
+.feature-plate:hover .plate-bg-photo,
+.plate-card:hover .plate-bg-photo {
+  opacity: 0.55;
+  transform: scale(1.05);
+}
+
 .vinyl-disc {
   width: clamp(180px, 22vw, 260px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: repeating-radial-gradient(circle at 50% 50%, #0B0E28 0 3px, #1D2357 3px 6px);
   position: relative;
+  z-index: 3;
   border: 3px solid var(--line-comic);
   box-shadow: 0 14px 34px rgba(0,0,0,0.5);
   animation: spin 12s linear infinite;
@@ -563,26 +584,27 @@ img { max-width: 100%; display: block; }
   background-size: cover;
   background-position: center;
 }
-.card-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-.c-video .card-thumb { background: repeating-linear-gradient(45deg, var(--fest-sky) 0 14px, #18b2e2 14px 28px); }
-.c-maker .card-thumb { background: repeating-linear-gradient(45deg, var(--fest-orange) 0 14px, #e95900 14px 28px); }
-.c-dining .card-thumb { background: repeating-linear-gradient(45deg, var(--fest-magenta) 0 14px, #e2185f 14px 28px); }
-.c-dessert .card-thumb { background: repeating-linear-gradient(45deg, var(--fest-yellow) 0 14px, #e8b900 14px 28px); }
+.c-video .card-thumb { background: #0b9ed4; }
+.c-maker .card-thumb { background: var(--fest-orange); }
+.c-dining .card-thumb { background: var(--fest-magenta); }
+.c-dessert .card-thumb { background: #e09f00; }
 
 .card-thumb .thumb-sym {
+  position: relative;
+  z-index: 3;
   font-family: var(--num-font);
   font-weight: 800;
   font-size: clamp(28px, 3.8vw, 40px);
   letter-spacing: 0.04em;
   color: #FFF;
-  text-shadow: 2px 2px 0 var(--line-comic);
+  text-shadow: 2px 2px 0 var(--line-comic), 0 0 12px rgba(0,0,0,0.6);
 }
 .thumb-plate-label {
   position: absolute;
   top: 12px;
   left: 12px;
-  z-index: 2;
+  z-index: 4;
   font-family: var(--num-font);
   font-size: 11px;
   font-weight: 800;
@@ -596,7 +618,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   bottom: 12px;
   right: 12px;
-  z-index: 2;
+  z-index: 4;
   font-family: var(--sans);
   font-size: 12px;
   font-weight: 800;
@@ -662,7 +684,6 @@ img { max-width: 100%; display: block; }
 .timeline-section .sec-title-wrap .sub { color: var(--fest-yellow); }
 .timeline-section .sec-title-wrap p { color: rgba(255,255,255,0.8); }
 
-/* 타임라인 컨트롤 영역 (데스크톱 스크롤 버튼 및 안내) */
 .timeline-controls {
   display: flex;
   align-items: center;
@@ -861,7 +882,6 @@ img { max-width: 100%; display: block; }
 }
 .btn-chan.accent:hover { background: #FFF; color: var(--ink-navy); border-color: #FFF; }
 
-/* 듀얼 QR 영역 - 클릭 가능한 카드 링크 */
 .colo-qr-dual {
   padding: clamp(30px, 3.8vw, 48px);
   display: grid;
@@ -1060,6 +1080,7 @@ footer {
   border-radius: 16px;
   overflow: hidden;
   background: #FFF;
+  position: relative;
 }
 .g-thumb {
   aspect-ratio: 16/10;
@@ -1076,7 +1097,25 @@ footer {
   object-fit: cover;
   transition: transform 0.3s ease;
 }
-.gallery-item:hover .g-thumb img { transform: scale(1.03); }
+.gallery-item:hover .g-thumb img { transform: scale(1.04); }
+
+/* STEP 라벨 뱃지 */
+.g-step-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  font-family: var(--num-font);
+  font-size: 11.5px;
+  font-weight: 800;
+  background: var(--fest-yellow);
+  color: var(--ink-navy);
+  border: 2px solid var(--line-comic);
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 var(--line-comic);
+}
+
 .g-placeholder {
   font-family: var(--num-font);
   font-size: 12px;
@@ -1192,7 +1231,6 @@ footer {
       <span class="cloud-badge">★ 2026년 청년 맞춤 클래스 기록</span>
     </div>
 
-    <!-- 역동적인 모션 타이포그래피 헤드라인 -->
     <h1 class="hero-title">
       <div class="hero-row-1">
         <span class="hero-word float-a t-white">청년들이</span> 
@@ -1219,7 +1257,6 @@ footer {
     </div>
   </div>
 
-  <!-- 정돈된 클린 그래픽 웨이브 디바이더 -->
   <div class="hero-wave-divider" aria-hidden="true">
     <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
       <path d="M0,24 C360,56 720,8 1080,44 C1260,62 1360,32 1440,36 L1440,60 L0,60 Z" fill="#FFFFFF"/>
@@ -1283,9 +1320,10 @@ footer {
       </div>
     </div>
 
-    <!-- 대표 클래스: Plate 01 -->
+    <!-- 대표 클래스: Plate 01 (0010.png 반영) -->
     <article class="feature-plate" data-category="career" data-program="canva">
       <div class="feature-visual">
+        <img src="0010.png" alt="캔바 AI 활용 클래스" class="plate-bg-photo" onerror="this.style.display='none'">
         <div class="grid-pattern"></div>
         <div class="vinyl-disc"></div>
       </div>
@@ -1325,9 +1363,10 @@ footer {
 
     <!-- 세부 클래스 그리드: Plates 02~05 -->
     <div class="plates-grid">
-      <!-- Plate 02 -->
+      <!-- Plate 02 (0020.JPG 반영) -->
       <article class="plate-card c-video" data-category="career" data-program="video">
         <div class="card-thumb">
+          <img src="0020.JPG" alt="영상 크리에이터 양성 과정" class="plate-bg-photo" onerror="this.style.display='none'">
           <span class="thumb-plate-label">PLATE 02</span>
           <span class="thumb-sym">VIDEO</span>
           <span class="thumb-status">수강 완료</span>
@@ -1343,9 +1382,10 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 03 -->
+      <!-- Plate 03 (0030.png 반영) -->
       <article class="plate-card c-maker" data-category="maker" data-program="printing">
         <div class="card-thumb">
+          <img src="0030.png" alt="3D 프린팅 입문반" class="plate-bg-photo" onerror="this.style.display='none'">
           <span class="thumb-plate-label">PLATE 03</span>
           <span class="thumb-sym">MAKER</span>
           <span class="thumb-status">수강 완료</span>
@@ -1361,9 +1401,10 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 04 -->
+      <!-- Plate 04 (0040.jpg 반영) -->
       <article class="plate-card c-dining" data-category="life" data-program="dining">
         <div class="card-thumb">
+          <img src="0040.jpg" alt="소셜 다이닝 요리 실습" class="plate-bg-photo" onerror="this.style.display='none'">
           <span class="thumb-plate-label">PLATE 04</span>
           <span class="thumb-sym">DINING</span>
           <span class="thumb-status">수강 완료</span>
@@ -1379,9 +1420,10 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 05 -->
+      <!-- Plate 05 (0050.jpg 반영) -->
       <article class="plate-card c-dessert" data-category="career" data-program="dessert">
         <div class="card-thumb">
+          <img src="0050.jpg" alt="로컬 디저트 카페 창업" class="plate-bg-photo" onerror="this.style.display='none'">
           <span class="thumb-plate-label">PLATE 05</span>
           <span class="thumb-sym">F&B LAB</span>
           <span class="thumb-status">수강 완료</span>
@@ -1410,7 +1452,6 @@ footer {
         <p>1월부터 12월까지의 프로젝트 일정입니다.</p>
       </div>
 
-      <!-- 데스크톱 가로스크롤 네비게이션 버튼 & 안내 -->
       <div class="timeline-controls">
         <span class="timeline-scroll-hint">좌우 스크롤 가능 ↔</span>
         <button type="button" class="timeline-btn-nav" id="btn-tl-prev" aria-label="이전 월 보기">‹</button>
@@ -1465,9 +1506,8 @@ footer {
         </div>
       </div>
 
-      <!-- 듀얼 QR 영역 (클릭 시 해당 링크로 바로 이동) -->
+      <!-- 듀얼 QR 영역 -->
       <div class="colo-qr-dual">
-        <!-- QR 1: 공식 블로그 (클릭 시 블로그 이동) -->
         <a href="https://blog.naver.com/muten304" id="qr-card-blog" target="_blank" rel="noopener" class="qr-island blog-theme" title="네이버 블로그 새창으로 열기">
           <div class="qr-box-inner">
             <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://blog.naver.com/muten304" alt="공식 네이버 블로그 QR코드">
@@ -1479,7 +1519,6 @@ footer {
           </div>
         </a>
 
-        <!-- QR 2: 청년 페스티벌 만족도 조사 (클릭 시 설문지 폼 이동) -->
         <a href="https://naver.me/5yhUhCXP" id="qr-card-survey" target="_blank" rel="noopener" class="qr-island survey-theme" title="만족도 설문조사 새창으로 열기">
           <div class="qr-box-inner">
             <img class="qr-img" id="qr-survey-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://naver.me/5yhUhCXP" alt="페스티벌 만족도 조사 QR코드">
@@ -1547,7 +1586,7 @@ var CONFIG = {
 };
 
 /* =====================================================================
-   ★ 5개 프로그램 아카이브 데이터 ★
+   ★ 5개 프로그램 아카이브 데이터 (확장자 대소문자 매핑 완료) ★
    ===================================================================== */
 var ARCHIVE_DATA = {
   canva: {
@@ -1558,10 +1597,10 @@ var ARCHIVE_DATA = {
     result: "개인별 포트폴리오 4종 완성",
     review: "“막막했던 이력서를 AI와 캔바로 쉽게 만들 수 있었습니다.” “AI를 사용해 작업할 수 있는 프로그램이 많아졌으면 좋겠습니다.”",
     steps: [
-      { step: "01. AI 프롬프트 설계", desc: "생성형 AI를 활용한 강점 키워드 도출 및 텍스트 구조화", img: "" },
-      { step: "02. 캔바 레이아웃 실습", desc: "템플릿 기반 직무 맞춤형 레이아웃 시각화", img: "" },
-      { step: "03. 숏폼제작", desc: "캔바를 이용한 간단한 숏폼 제작", img: "" },
-      { step: "04. 랜딩페이지 빌드", desc: "반응형 랜딩페이지 포트폴리오 구축", img: "" }
+      { step: "AI 프롬프트 설계", desc: "생성형 AI를 활용한 강점 키워드 도출 및 텍스트 구조화", img: "0011.png" },
+      { step: "캔바 레이아웃 실습", desc: "템플릿 기반 직무 맞춤형 레이아웃 시각화", img: "0012.png" },
+      { step: "숏폼제작", desc: "캔바를 이용한 간단한 숏폼 제작", img: "0013.png" },
+      { step: "랜딩페이지 빌드", desc: "반응형 랜딩페이지 포트폴리오 구축", img: "0014.png" }
     ]
   },
   video: {
@@ -1572,10 +1611,10 @@ var ARCHIVE_DATA = {
     result: "청년 제작 숏폼/릴스 완성 및 공모 출품",
     review: "“스마트폰 하나로 기획부터 컷편집, 음향까지 스스로 끝낼 수 있는 자신감을 얻었어요.”",
     steps: [
-      { step: "01. 트렌드 분석 & 콘티 기획", desc: "바이럴 숏폼 구조 분석 및 씬별 스토리보드 작성", img: "" },
-      { step: "02. 스마트폰 현장 촬영", desc: "서구 원도심 골목 현장 출사 및 앵글 실습", img: "" },
-      { step: "03. 컷편집 & 템포 조율", desc: "모바일 편집 앱을 활용한 타이밍 컷편집과 BGM 믹싱", img: "" },
-      { step: "04. 멘토링 & 채널 런칭", desc: "완벽을 위한 멘토링 및 개인 SNS 채널 업로드", img: "" }
+      { step: "트렌드 분석 & 콘티 기획", desc: "바이럴 숏폼 구조 분석 및 씬별 스토리보드 작성", img: "0021.JPG" },
+      { step: "스마트폰 현장 촬영", desc: "서구 원도심 골목 현장 출사 및 앵글 실습", img: "0022.JPG" },
+      { step: "컷편집 & 템포 조율", desc: "모바일 편집 앱을 활용한 타이밍 컷편집과 BGM 믹싱", img: "0023.JPG" },
+      { step: "멘토링 & 채널 런칭", desc: "완벽을 위한 멘토링 및 개인 SNS 채널 업로드", img: "0024.JPG" }
     ]
   },
   printing: {
@@ -1586,10 +1625,10 @@ var ARCHIVE_DATA = {
     result: "캔 따개·클리커 등 생활 밀착형 창작물 출력",
     review: "“상상했던 디자인이 실물로 나왔을 때의 기쁨이 잊히지 않아요.”",
     steps: [
-      { step: "01. 3D CAD 모델링 기초", desc: "기본 파츠 스케치 및 입체 형상 3차원 설계", img: "" },
-      { step: "02. 슬라이서 파라미터 세팅", desc: "적층 높이, 서포트, 인필 밀도 등 출력 조건 최적화", img: "" },
-      { step: "03. 후가공 & 모델링 심화", desc: "서포트 제거, 샌딩 마감 및 정밀 모델링 설계", img: "" },
-      { step: "04. 캐릭터 제작", desc: "캐릭터 설계 및 최종 결과물 제작", img: "" }
+      { step: "3D CAD 모델링 기초", desc: "기본 파츠 스케치 및 입체 형상 3차원 설계", img: "0031.png" },
+      { step: "슬라이서 파라미터 세팅", desc: "적층 높이, 서포트, 인필 밀도 등 출력 조건 최적화", img: "0032.png" },
+      { step: "후가공 & 모델링 심화", desc: "서포트 제거, 샌딩 마감 및 정밀 모델링 설계", img: "0033.png" },
+      { step: "캐릭터 제작", desc: "캐릭터 설계 및 최종 결과물 제작", img: "0034.jpg" }
     ]
   },
   dining: {
@@ -1600,10 +1639,10 @@ var ARCHIVE_DATA = {
     result: "밀프렙부터 원 팬 요리까지 이젠 혼자서도 잘 먹겠습니다.",
     review: "“함께 요리하며 큰 위로를 받았습니다.”",
     steps: [
-      { step: "01. 밀프렙 2종 제작", desc: "배 고플 땐 살짝 꺼내먹어요.", img: "" },
-      { step: "02. 원 팬 요리 1", desc: "춘천을 가지 않아도 닭갈비를 먹어요.", img: "" },
-      { step: "03. 원 팬 요리 2", desc: "집에서도 이딸리아노", img: "" },
-      { step: "04. 담금 장인", desc: "모히또 가서 우리집 한 잔", img: "" }
+      { step: "밀프렙 2종 제작", desc: "배 고플 땐 살짝 꺼내먹어요.", img: "0041.jpg" },
+      { step: "원 팬 요리 1", desc: "춘천을 가지 않아도 닭갈비를 먹어요.", img: "0042.jpg" },
+      { step: "원 팬 요리 2", desc: "집에서도 이딸리아노", img: "0043.jpg" },
+      { step: "담금 장인", desc: "모히또 가서 우리집 한 잔", img: "0044.jpg" }
     ]
   },
   dessert: {
@@ -1614,10 +1653,10 @@ var ARCHIVE_DATA = {
     result: "신청 접수 인기 마감 · 모지포그라운드, 메종드나인, 엠바크 연계 실습",
     review: "“창업에 필요한 바리스타 기초부터 현장 멘토링까지 생생하게 배울 수 있어 든든했습니다.”",
     steps: [
-      { step: "01. 창업 멘토링", desc: "로컬 식재료 기반 제과 기초 원리 이해", img: "" },
-      { step: "02. 카페 메뉴 실습", desc: "핫한 카페의 대표 메뉴를 배우다.", img: "" },
-      { step: "03. 제과 메뉴 실습", desc: "요즘 대세 제과 기술 습득, 맛을 곁들인", img: "" },
-      { step: "04. 나만의 카페 기획", desc: "상권 분석, 내 카페 디자인 및 메뉴 개발", img: "" }
+      { step: "창업 멘토링", desc: "로컬 식재료 기반 제과 기초 원리 이해", img: "0051.jpg" },
+      { step: "카페 메뉴 실습", desc: "핫한 카페의 대표 메뉴를 배우다.", img: "0052.jpg" },
+      { step: "제과 메뉴 실습", desc: "요즘 대세 제과 기술 습득, 맛을 곁들인", img: "0053.jpg" },
+      { step: "나만의 카페 기획", desc: "상권 분석, 내 카페 디자인 및 메뉴 개발", img: "0054.jpg" }
     ]
   }
 };
@@ -1653,7 +1692,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // 타임라인 가로스크롤 제어 (버튼 + 마우스 휠 지원)
+  // 타임라인 가로스크롤 제어
   var tlTrack = document.getElementById('timeline-track');
   var btnPrev = document.getElementById('btn-tl-prev');
   var btnNext = document.getElementById('btn-tl-next');
@@ -1670,7 +1709,6 @@ document.addEventListener('DOMContentLoaded', function(){
       });
     }
 
-    // 마우스 휠 위아래 굴릴 시 가로스크롤로 자연스럽게 전환
     tlTrack.addEventListener('wheel', function(e) {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
@@ -1703,15 +1741,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
     mGallery.innerHTML = "";
     data.steps.forEach(function(item, idx) {
+      var stepNum = "STEP 0" + (idx + 1);
       var card = document.createElement('div');
       card.className = 'gallery-item';
       
-      var thumbHtml = item.img
-        ? '<img src="' + item.img + '" alt="' + item.step + '">'
-        : '<div class="g-placeholder">STEP 0' + (idx + 1) + '</div>';
+      var imgHtml = item.img
+        ? '<img src="' + item.img + '" alt="' + item.step + '" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'inline-block\';">' +
+          '<div class="g-placeholder" style="display:none;">' + stepNum + '</div>'
+        : '<div class="g-placeholder">' + stepNum + '</div>';
 
       card.innerHTML = 
-        '<div class="g-thumb">' + thumbHtml + '</div>' +
+        '<span class="g-step-badge">' + stepNum + '</span>' +
+        '<div class="g-thumb">' + imgHtml + '</div>' +
         '<div class="g-caption">' +
           '<strong>' + item.step + '</strong>' +
           item.desc +
