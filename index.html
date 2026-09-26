@@ -246,7 +246,7 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
-/* 정돈된 모던 웨이브 디바이더 (피아노 건반 대체) */
+/* 정돈된 모던 웨이브 디바이더 */
 .hero-wave-divider {
   position: relative;
   width: 100%;
@@ -662,7 +662,7 @@ img { max-width: 100%; display: block; }
 .timeline-section .sec-title-wrap .sub { color: var(--fest-yellow); }
 .timeline-section .sec-title-wrap p { color: rgba(255,255,255,0.8); }
 
-/* 타임라인 컨트롤 영역 (데스크톱 스크롤 버튼 및 힌트) */
+/* 타임라인 컨트롤 영역 (데스크톱 스크롤 버튼 및 안내) */
 .timeline-controls {
   display: flex;
   align-items: center;
@@ -716,7 +716,6 @@ img { max-width: 100%; display: block; }
   background: rgba(19, 39, 156, 0.85);
   scroll-behavior: smooth;
   cursor: grab;
-  /* 모던 커스텀 스크롤바 */
   scrollbar-width: thin;
   scrollbar-color: var(--fest-yellow) rgba(0,0,0,0.3);
 }
@@ -754,7 +753,6 @@ img { max-width: 100%; display: block; }
 }
 .month-col:first-child { border-left: none; }
 
-/* 숫자 폰트 및 기본 연한 상태 */
 .m-num {
   font-family: var(--num-font);
   font-weight: 800;
@@ -762,12 +760,10 @@ img { max-width: 100%; display: block; }
   color: rgba(255,255,255,0.35);
 }
 
-/* 활성(진한) 숫자 클래스 */
 .m-num.num-solid, .month-col.active .m-num { 
   color: #FFFFFF !important; 
 }
 
-/* 상단 컬러 바 시스템 */
 .bar-orange::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-orange); }
 .bar-yellow::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-yellow); }
 .bar-magenta::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--fest-magenta); }
@@ -865,7 +861,7 @@ img { max-width: 100%; display: block; }
 }
 .btn-chan.accent:hover { background: #FFF; color: var(--ink-navy); border-color: #FFF; }
 
-/* 듀얼 QR 영역 */
+/* 듀얼 QR 영역 - 클릭 가능한 카드 링크 */
 .colo-qr-dual {
   padding: clamp(30px, 3.8vw, 48px);
   display: grid;
@@ -885,11 +881,22 @@ img { max-width: 100%; display: block; }
   gap: 12px;
   background: var(--bg-cream);
   box-shadow: 4px 4px 0 var(--line-comic);
-  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.qr-island:hover { transform: translateY(-3px); }
-.qr-island.survey-theme { box-shadow: 4px 4px 0 var(--fest-magenta); }
+.qr-island:hover { 
+  transform: translateY(-4px); 
+}
 .qr-island.blog-theme { box-shadow: 4px 4px 0 var(--fest-sky); }
+.qr-island.blog-theme:hover { 
+  box-shadow: 6px 6px 0 var(--fest-sky); 
+}
+.qr-island.survey-theme { box-shadow: 4px 4px 0 var(--fest-magenta); }
+.qr-island.survey-theme:hover { 
+  box-shadow: 6px 6px 0 var(--fest-magenta); 
+}
 
 .qr-box-inner {
   padding: 8px;
@@ -897,6 +904,10 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--line-comic);
   border-radius: 14px;
   line-height: 0;
+  transition: transform 0.2s ease;
+}
+.qr-island:hover .qr-box-inner {
+  transform: scale(1.02);
 }
 .qr-img {
   width: 125px;
@@ -930,6 +941,10 @@ img { max-width: 100%; display: block; }
   color: var(--mute);
   font-weight: 600;
   margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
 
 /* ===================== FOOTER ===================== */
@@ -1204,7 +1219,7 @@ footer {
     </div>
   </div>
 
-  <!-- 정돈된 클린 그래픽 웨이브 디바이더 (피아노 대체) -->
+  <!-- 정돈된 클린 그래픽 웨이브 디바이더 -->
   <div class="hero-wave-divider" aria-hidden="true">
     <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
       <path d="M0,24 C360,56 720,8 1080,44 C1260,62 1360,32 1440,36 L1440,60 L0,60 Z" fill="#FFFFFF"/>
@@ -1450,31 +1465,31 @@ footer {
         </div>
       </div>
 
-      <!-- 듀얼 QR 영역 -->
+      <!-- 듀얼 QR 영역 (클릭 시 해당 링크로 바로 이동) -->
       <div class="colo-qr-dual">
-        <!-- QR 1: 공식 블로그-->
-        <div class="qr-island blog-theme">
+        <!-- QR 1: 공식 블로그 (클릭 시 블로그 이동) -->
+        <a href="https://blog.naver.com/muten304" id="qr-card-blog" target="_blank" rel="noopener" class="qr-island blog-theme" title="네이버 블로그 새창으로 열기">
           <div class="qr-box-inner">
             <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://blog.naver.com/muten304" alt="공식 네이버 블로그 QR코드">
           </div>
           <div class="qr-info-wrap">
             <span class="qr-badge-pill b-blog">공식 채널</span>
             <div class="qr-caption-title">네이버 블로그</div>
-            <div class="qr-caption-sub">청년 정책 소식</div>
+            <div class="qr-caption-sub">바로가기 클릭 ↗</div>
           </div>
-        </div>
+        </a>
 
-        <!-- QR 2: 청년 페스티벌 만족도 조사 (새로운 폼 URL 반영 완료) -->
-        <div class="qr-island survey-theme">
+        <!-- QR 2: 청년 페스티벌 만족도 조사 (클릭 시 설문지 폼 이동) -->
+        <a href="https://naver.me/5yhUhCXP" id="qr-card-survey" target="_blank" rel="noopener" class="qr-island survey-theme" title="만족도 설문조사 새창으로 열기">
           <div class="qr-box-inner">
             <img class="qr-img" id="qr-survey-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://naver.me/5yhUhCXP" alt="페스티벌 만족도 조사 QR코드">
           </div>
           <div class="qr-info-wrap">
             <span class="qr-badge-pill b-survey">10. 17. FESTIVAL</span>
             <div class="qr-caption-title">만족도 설문조사</div>
-            <div class="qr-caption-sub">소중한 의견 남기기</div>
+            <div class="qr-caption-sub">설문 참여하기 ↗</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1528,7 +1543,7 @@ footer {
 var CONFIG = {
   blog:      "https://blog.naver.com/muten304",
   instagram: "https://www.instagram.com/muten_304",
-  survey:    "https://naver.me/5yhUhCXP" // 전달해주신 네이버 폼 URL 반영 완료
+  survey:    "https://naver.me/5yhUhCXP"
 };
 
 /* =====================================================================
@@ -1611,10 +1626,15 @@ document.addEventListener('DOMContentLoaded', function(){
   // 링크 및 QR 바인딩
   var ig = document.getElementById('link-ig'), 
       bl = document.getElementById('link-blog'), 
-      qrSurvey = document.getElementById('qr-survey-img');
+      qrSurvey = document.getElementById('qr-survey-img'),
+      qrCardBlog = document.getElementById('qr-card-blog'),
+      qrCardSurvey = document.getElementById('qr-card-survey');
 
   if(ig) ig.href = CONFIG.instagram;
   if(bl) bl.href = CONFIG.blog;
+  if(qrCardBlog) qrCardBlog.href = CONFIG.blog;
+  if(qrCardSurvey) qrCardSurvey.href = CONFIG.survey;
+
   if(qrSurvey && CONFIG.survey) {
     qrSurvey.src = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + encodeURIComponent(CONFIG.survey);
   }
