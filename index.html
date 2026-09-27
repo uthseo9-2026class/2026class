@@ -458,7 +458,7 @@ img { max-width: 100%; display: block; }
 }
 .feature-plate:hover .plate-bg-photo,
 .plate-card:hover .plate-bg-photo {
-  opacity: 0.65; /* 호버 시 배경 사진이 더욱 시원하게 드러남 */
+  opacity: 0.65;
   transform: scale(1.04);
 }
 
@@ -490,7 +490,7 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--line-comic);
 }
 
-/* 1. LP 디스크: 기본 정중앙 배치 -> 마우스 오버 시 왼쪽 하단으로 쑥 빠지며 페이드아웃 */
+/* LP 디스크: 기본 정중앙 배치 -> 마우스 오버 시 왼쪽 하단으로 쑥 빠지며 페이드아웃 */
 .vinyl-disc-wrapper {
   position: absolute;
   top: 50%;
@@ -755,6 +755,13 @@ img { max-width: 100%; display: block; }
 .timeline-btn-nav:active {
   transform: translate(1px, 1px);
   box-shadow: 2px 2px 0 var(--line-comic);
+}
+.timeline-btn-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: 2px 2px 0 var(--line-comic) !important;
+  background: #FFF !important;
 }
 
 .timeline-track-wrap {
@@ -1215,6 +1222,11 @@ footer {
 }
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
+  .ticker {
+    font-size: 13px; /* 모바일에서 텍스트 크기 축소 */
+    padding: 7px 0;   /* 모바일 상하 여백 슬림화 */
+  }
+  .ticker-track span { margin: 0 10px; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .stat-box:nth-child(3) { border-left: none; }
   .stat-box:nth-child(3), .stat-box:nth-child(4) { border-top: 1px solid var(--line-soft); }
@@ -1453,7 +1465,7 @@ footer {
         </div>
       </article>
 
-      <!-- Plate 05 (0050.png 반영) -->
+      <!-- Plate 05 (0050.png) -->
       <article class="plate-card c-dessert" data-category="career" data-program="dessert">
         <div class="card-thumb">
           <img src="0050.png" alt="로컬 디저트 카페 창업" class="plate-bg-photo" onerror="this.style.display='none'">
@@ -1619,7 +1631,7 @@ var CONFIG = {
 };
 
 /* =====================================================================
-   ★ 5개 프로그램 아카이브 데이터 (확장자 및 신규 파일 매핑 완료) ★
+   ★ 5개 프로그램 아카이브 데이터 ★
    ===================================================================== */
 var ARCHIVE_DATA = {
   canva: {
@@ -1688,7 +1700,7 @@ var ARCHIVE_DATA = {
     steps: [
       { step: "창업 멘토링", desc: "로컬 식재료 기반 제과 기초 원리 이해", img: "0051.png" },
       { step: "카페 메뉴 실습", desc: "핫한 카페의 대표 메뉴를 배우다.", img: "0052.png" },
-      { step: "제과 메뉴 실습", desc: "요즘 대세 제과 기술 습득, 맛을 곁들인", img: "" }, // 3번은 비워둠 (추후 파일명만 넣으시면 됩니다)
+      { step: "제과 메뉴 실습", desc: "요즘 대세 제과 기술 습득, 맛을 곁들인", img: "" },
       { step: "나만의 카페 기획", desc: "상권 분석, 내 카페 디자인 및 메뉴 개발", img: "0054.png" }
     ]
   }
@@ -1725,22 +1737,40 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // 타임라인 가로스크롤 제어
+  // 타임라인 가로스크롤 제어 (1월/12월 경계 도달 제어 + 부드러운 스크롤)
   var tlTrack = document.getElementById('timeline-track');
   var btnPrev = document.getElementById('btn-tl-prev');
   var btnNext = document.getElementById('btn-tl-next');
 
+  function updateTimelineNav() {
+    if (!tlTrack || !btnPrev || !btnNext) return;
+    var maxScroll = tlTrack.scrollWidth - tlTrack.clientWidth;
+    // 1월(시작점) 체크
+    btnPrev.disabled = tlTrack.scrollLeft <= 4;
+    // 12월(종료점) 체크
+    btnNext.disabled = tlTrack.scrollLeft >= maxScroll - 4;
+  }
+
   if (tlTrack) {
     if (btnPrev) {
       btnPrev.addEventListener('click', function() {
-        tlTrack.scrollBy({ left: -320, behavior: 'smooth' });
+        var stepWidth = tlTrack.firstElementChild ? tlTrack.firstElementChild.offsetWidth * 2 : 310;
+        var targetLeft = Math.max(0, tlTrack.scrollLeft - stepWidth);
+        tlTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
       });
     }
     if (btnNext) {
       btnNext.addEventListener('click', function() {
-        tlTrack.scrollBy({ left: 320, behavior: 'smooth' });
+        var stepWidth = tlTrack.firstElementChild ? tlTrack.firstElementChild.offsetWidth * 2 : 310;
+        var maxScroll = tlTrack.scrollWidth - tlTrack.clientWidth;
+        var targetLeft = Math.min(maxScroll, tlTrack.scrollLeft + stepWidth);
+        tlTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
       });
     }
+
+    tlTrack.addEventListener('scroll', updateTimelineNav);
+    window.addEventListener('resize', updateTimelineNav);
+    setTimeout(updateTimelineNav, 150);
 
     tlTrack.addEventListener('wheel', function(e) {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
