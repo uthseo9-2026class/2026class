@@ -929,7 +929,7 @@ footer {
   pointer-events: none;
   transition: opacity 0.22s ease;
 }
-.modal-backdrop.is-open { opacity: 1; pointer-events: auto; }
+.modal-backdrop.is-open .modal-window { transform: translateY(0); }
 .modal-window {
   background: var(--c-white);
   border: var(--border-thick);
@@ -944,7 +944,6 @@ footer {
   transform: translateY(22px);
   transition: transform 0.22s ease;
 }
-.modal-backdrop.is-open .modal-window { transform: translateY(0); }
 .modal-close {
   position: absolute;
   top: 22px;
@@ -1259,7 +1258,7 @@ footer {
           <p>트렌디한 숏폼 기획부터 스마트폰 촬영, 컷편집까지. 청년 스스로 1인 미디어가 되는 제작 전 과정을 실습했습니다.</p>
           <div class="card-meta">
             <span>10회차 제작 실습</span>
-            <span class="meta-point">숏폼 업로드 및 공모</span>
+            <span class="meta-point">숏폼 업로드 및 공모 출품</span>
           </div>
         </div>
       </article>
@@ -1388,9 +1387,10 @@ footer {
           </div>
         </a>
 
-        <a href="https://naver.me/5yhUhCXP" id="qr-card-survey" target="_blank" rel="noopener" class="qr-island" title="만족도 설문조사 새창으로 열기">
-  <div class="qr-box-inner">
-    <img class="qr-img" id="qr-survey-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fnaver.me%2F5yhUhCXP" alt="페스티벌 만족도 조사 QR코드">
+        <!-- 설문조사 주소 및 QR코드 반영 완료 -->
+        <a href="https://form.naver.com/response/2BeRJe8aTrl" id="qr-card-survey" target="_blank" rel="noopener" class="qr-island" title="만족도 설문조사 새창으로 열기">
+          <div class="qr-box-inner">
+            <img class="qr-img" id="qr-survey-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fform.naver.com%2Fresponse%2F2BeRJe8aTrl" alt="페스티벌 만족도 조사 QR코드">
           </div>
           <div class="qr-info-wrap">
             <span class="qr-badge-pill" style="background: var(--c-pink); color: #FFF;">10. 17. FESTIVAL</span>
@@ -1444,7 +1444,7 @@ footer {
 var CONFIG = {
   blog:      "https://blog.naver.com/muten304",
   instagram: "https://www.instagram.com/muten_304",
-  survey:    "https://naver.me/5yhUhCXP"
+  survey:    "https://form.naver.com/response/2BeRJe8aTrl"
 };
 
 var ARCHIVE_DATA = {
